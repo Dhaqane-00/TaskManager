@@ -1,11 +1,14 @@
 "use client";
 import * as React from "react";
 import { useState } from "react";
-import Link from "next/link";
+import { Link } from "@nextui-org/link";
 import { usePathname } from "next/navigation";
+import { Button } from "@nextui-org/button";
+import { Card, CardBody } from "@nextui-org/card";
 import { NavItem } from "./NavItem";
 import { HelpCenter } from "./HelpCenter";
 import { NavItemType } from "./types";
+import Image from "next/image";
 
 const initialNavItems: NavItemType[] = [
   { 
@@ -50,55 +53,62 @@ export const Sidebar: React.FC = () => {
   }));
 
   return (
-    <nav className='flex relative px-8 pb-2.5 h-screen font-semibold text-white bg-white w-[280px] max-sm:top-0 max-sm:left-0 max-sm:duration-[0.3s] max-sm:w-[279px] max-sm:z-[100]'>
-      <button
-        className="hidden max-sm:block max-sm:absolute max-sm:top-5 max-sm:-right-10 max-sm:justify-center max-sm:items-center max-sm:w-8 max-sm:h-8 max-sm:bg-gray-900 max-sm:rounded-full max-sm:cursor-pointer max-sm:border-[none] max-sm:text-[white]"
+    <Card 
+      className="flex relative h-screen bg-white w-[280px] border-r border-divider max-sm:top-0 max-sm:left-0 max-sm:duration-[0.3s] max-sm:w-[279px] max-sm:z-[100]"
+      radius="none"
+      shadow="none"
+    >
+      <Button
+        isIconOnly
+        variant="light"
+        className="hidden max-sm:flex max-sm:absolute max-sm:top-5 max-sm:-right-10 max-sm:bg-gray-900 max-sm:rounded-full"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         aria-label="Toggle mobile menu"
       >
-        <span>{isMobileMenuOpen ? "×" : "☰"}</span>
-      </button>
+        {isMobileMenuOpen ? "×" : "☰"}
+      </Button>
 
-      <div className="flex flex-col justify-between py-6 w-full">
+      <CardBody className="flex flex-col justify-between py-6">
         <div className="flex flex-col">
           <header className="flex gap-3 items-start text-3xl tracking-tighter text-gray-900 whitespace-nowrap">
-            <img
-              loading="lazy"
-              src="/icons/logo.svg"
+            <Image
+              src="/icons/Book-squareLogo.svg"
               alt="DNX logo"
-              className="object-contain shrink-0 w-10 aspect-square"
+              width={40}
+              height={40}
+              className="object-contain"
             />
             <h1 className="w-[136px]">DNX</h1>
           </header>
 
-          <section className="flex flex-col mt-10 text-sm tracking-tight leading-5 text-slate-400">
-            {navItems.map((item, index) => (
+          <nav className="flex flex-col mt-10 gap-6">
+            {navItems.map((item) => (
               <Link 
+                key={item.path}
                 href={item.path}
-                key={item.path} 
-                className={index > 0 ? "mt-6" : ""}
+                className="no-underline"
               >
                 <NavItem {...item} />
               </Link>
             ))}
-          </section>
+          </nav>
         </div>
 
         <div className="flex flex-col gap-4">
-          <button 
-            className="z-10 self-center w-12 h-12 text-3xl font-bold tracking-wide leading-tight text-center whitespace-nowrap bg-gray-900 border-4 border-white border-solid rounded-[48px]"
-            aria-label="Help"
-          >
-            ?
-          </button>
-
+          <Image 
+            src="/icons/Question.svg" 
+            alt="Help" 
+            width={84} 
+            height={48} 
+            className="relative -mb-6 mx-auto"
+          />
           <HelpCenter
             title="Help Center"
             description="Having Trouble in Learning. Please contact us for more questions."
             buttonText="Go To Help Center"
           />
         </div>
-      </div>
-    </nav>
+      </CardBody>
+    </Card>
   );
 };
