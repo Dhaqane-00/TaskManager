@@ -35,7 +35,7 @@ export const Sidebar = () => {
         isOpen ? "translate-x-0" : "-translate-x-full",
         "z-40"
       )}>
-        <div className="flex overflow-auto flex-col my-auto size-full">
+        <div className="flex overflow-auto flex-col my-auto size-full pt-">
           <header className="flex gap-3 items-start text-3xl tracking-tighter text-gray-900 whitespace-nowrap">
             <Image
               src="/icons/log.svg"
