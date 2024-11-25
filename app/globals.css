@@ -74,3 +74,7 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.filter-primary {
+  filter: invert(31%) sepia(98%) saturate(1936%) hue-rotate(211deg) brightness(97%) contrast(101%);
+}

@@ -1,12 +1,13 @@
-import * as React from "react";
+"use client";
+
 import { HelpCenterProps } from "./types";
 
-export const HelpCenter: React.FC<HelpCenterProps> = ({ 
+export const HelpCenter = ({ 
   title, 
   description, 
   buttonText, 
   onHelpClick 
-}) => {
+}: HelpCenterProps) => {
   return (
     <div className="flex overflow-hidden flex-col text-xs tracking-tight text-center text-white bg-gray-900 rounded-xl">
       <div className="flex flex-col pb-4 rounded-xl bg-gray-900 bg-opacity-0">

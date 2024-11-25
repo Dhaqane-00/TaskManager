@@ -1,14 +1,11 @@
 export interface NavItemProps {
     icon: string;
     label: string;
-    isActive?: boolean;
-    onClick?: () => void;
-    path?: string;
+    path: string;
   }
   
   export interface SidebarProps {
     onNavigate?: (path: string) => void;
-    activeItem?: string;
   }
   
   export interface HelpCenterProps {
