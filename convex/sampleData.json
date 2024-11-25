@@ -1,0 +1,57 @@
+[
+    {
+      "id": "1",
+      "title": "Design Homepage",
+      "description": "Create a responsive layout for the homepage using Tailwind CSS.",
+      "priority": "High",
+      "status": "In Progress",
+      "assigned_to": "John Doe",
+      "due_date": "2024-12-01",
+      "created_at": "2024-11-20",
+      "tags": ["UI/UX", "Frontend"]
+    },
+    {
+      "id": "2",
+      "title": "Set Up Backend Server",
+      "description": "Configure Node.js server with Express and integrate MongoDB.",
+      "priority": "Medium",
+      "status": "Pending",
+      "assigned_to": "Jane Smith",
+      "due_date": "2024-12-05",
+      "created_at": "2024-11-21",
+      "tags": ["Backend", "Database"]
+    },
+    {
+      "id": "3",
+      "title": "Conduct Team Meeting",
+      "description": "Schedule a meeting to discuss the project's timeline and tasks.",
+      "priority": "Low",
+      "status": "Completed",
+      "assigned_to": "Alice Brown",
+      "due_date": "2024-11-15",
+      "created_at": "2024-11-10",
+      "tags": ["Management"]
+    },
+    {
+      "id": "4",
+      "title": "Implement Authentication",
+      "description": "Add user authentication using JWT and bcrypt.",
+      "priority": "High",
+      "status": "Pending",
+      "assigned_to": "Mark Taylor",
+      "due_date": "2024-11-30",
+      "created_at": "2024-11-20",
+      "tags": ["Security", "Backend"]
+    },
+    {
+      "id": "5",
+      "title": "Write Test Cases",
+      "description": "Create unit tests for critical components using Jest.",
+      "priority": "Medium",
+      "status": "In Progress",
+      "assigned_to": "Sophia Lee",
+      "due_date": "2024-12-10",
+      "created_at": "2024-11-22",
+      "tags": ["Testing", "Quality Assurance"]
+    }
+  ]
