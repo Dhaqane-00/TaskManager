@@ -14,7 +14,7 @@ const navItems = [
 
 export const Sidebar = () => {
   return (
-    <nav className="flex overflow-auto gap-8 px-8 pb-2.5 h-screen font-semibold bg-white max-sm:gap-4 max-sm:px-4">
+    <nav className="flex overflow-auto gap-8 px-8 pb-2.5 h-screen font-semibold bg-white max-sm:gap-4 max-sm:px-4 pt-4">
       <div className="flex overflow-auto flex-col my-auto size-full">
         <header className="flex gap-3 items-start text-3xl tracking-tighter text-gray-900 whitespace-nowrap">
           <Image

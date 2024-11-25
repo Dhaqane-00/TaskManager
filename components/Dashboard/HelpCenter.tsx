@@ -1,6 +1,8 @@
 "use client";
 
 import { HelpCenterProps } from "./types";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export const HelpCenter = ({ 
   title, 
@@ -9,21 +11,24 @@ export const HelpCenter = ({
   onHelpClick 
 }: HelpCenterProps) => {
   return (
-    <div className="flex overflow-hidden flex-col text-xs tracking-tight text-center text-white bg-gray-900 rounded-xl">
-      <div className="flex flex-col pb-4 rounded-xl bg-gray-900 bg-opacity-0">
-        <div className="flex shrink-0 rounded-full bg-white bg-opacity-10 h-[60px] w-[66px]" />
-        <div className="flex flex-col items-center px-4 mt-4">
-          <h2 className="text-base tracking-tight">{title}</h2>
-          <p className="mt-4 font-medium">{description}</p>
-          <button 
-            className="self-stretch px-7 py-4 mt-11 text-gray-900 bg-white rounded-xl hover:bg-gray-50 transition-colors"
-            onClick={onHelpClick}
-            aria-label={buttonText}
-          >
-            {buttonText}
-          </button>
+    <Card className="bg-gray-900 text-white">
+      <CardHeader>
+        <div className="flex justify-center">
+          <div className="flex shrink-0 rounded-full bg-white/10 h-[60px] w-[66px]" />
         </div>
-      </div>
-    </div>
+      </CardHeader>
+      <CardContent className="text-center space-y-4">
+        <h2 className="text-base tracking-tight">{title}</h2>
+        <p className="font-medium text-xs">{description}</p>
+        <Button
+          onClick={onHelpClick}
+          aria-label={buttonText}
+          variant="secondary"
+          className="w-full mt-7 text-xs"
+        >
+          {buttonText}
+        </Button>
+      </CardContent>
+    </Card>
   );
 };
