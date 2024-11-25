@@ -12,7 +12,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
-export const NavItem = ({ icon, label, path = "/" }: NavItemProps) => {
+export const NavItem = ({ icon, label, path = "/", onClick }: NavItemProps) => {
   const pathname = usePathname();
   const isActive = pathname === path;
 
@@ -22,6 +22,7 @@ export const NavItem = ({ icon, label, path = "/" }: NavItemProps) => {
         <NavigationMenuItem>
           <NavigationMenuLink
             href={path}
+            onClick={onClick}
             className={cn(
               navigationMenuTriggerStyle(),
               "w-full justify-start px-5 py-2.5 rounded-xl",

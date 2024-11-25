@@ -2,6 +2,7 @@ export interface NavItemProps {
     icon: string;
     label: string;
     path: string;
+    onClick?: () => void;
   }
   
   export interface SidebarProps {

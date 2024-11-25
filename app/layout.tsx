@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <div className="flex flex-row h-screen">
-          <div className="w-64">
+          <div className="md:w-64 w-0">
             <Sidebar />
           </div>
           <div className="flex-1">
