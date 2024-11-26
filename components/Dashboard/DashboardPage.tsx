@@ -1,3 +1,5 @@
+'use client'
+
 import { MentorCard } from "./MentorCard"
 import { TaskCard } from "./TaskCard"
 import { TaskToday } from "./TaskToday"
@@ -5,6 +7,9 @@ import { Calendar } from "./Calendar"
 import { Activity } from "./Activity"
 import { RunningTask } from "./RunningTask"
 import { Button } from "../ui/button"
+import { BellIcon } from "lucide-react"
+import { UserButton, SignInButton, SignOutButton, useAuth, useUser } from "@clerk/nextjs"
+import { DashboardHeader } from "./DashboardHeader"
 
 export default function DashboardPage() {
   const mentors = [
@@ -62,128 +67,92 @@ export default function DashboardPage() {
   }
 
   return (
-    <main className="bg-neutral-50 overflow-hidden">
-      <div className="flex gap-5 max-md:flex-col">
-        <nav className="w-[18%] max-md:w-full">
-          <div className="flex gap-5 justify-between px-8 pb-2.5 w-full bg-white">
-            <div className="flex gap-3 items-start mt-8" />
-            <div className="border-l border-neutral-100 h-[1024px]" />
+    <main className="h-screen overflow-y-auto p-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        {/* Main Content - Left Side */}
+        <div className="lg:col-span-2 space-y-4">
+          <DashboardHeader />
+          {/* Stats Row */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="md:col-span-1">
+              <RunningTask currentTasks={65} totalTasks={100} />
+            </div>
+            <div className="md:col-span-2">
+              <Activity
+                chartData={{
+                  labels: ["Mon", "Tue", "Wed", "Thu", "Fri"],
+                  values: [30, 40, 45, 50, 45]
+                }}
+              />
+            </div>
           </div>
-        </nav>
 
-        <section className="w-6/12 ml-5 max-md:w-full max-md:ml-0">
-          <div className="w-full">
-            <header className="flex justify-between items-center">
-              <div>
-                <h1 className="text-2xl font-semibold text-gray-900">
-                  Hi, Dennis Nzioki
-                </h1>
-                <p className="mt-2 text-base text-slate-600">
-                  Let's finish your task today!
-                </p>
-              </div>
-              <div className="flex gap-6">
-                <Button variant="ghost" size="icon">
+          {/* Monthly Mentors */}
+          <section>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-lg font-semibold text-gray-900">Monthly Mentors</h2>
+              <div className="flex gap-2">
+                <Button variant="ghost" size="icon" className="w-8 h-8">
                   <img
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/b44ee590b442c8a5b051af6b082787fe70bde9d853f121bb0c31e0b7061d79d8?placeholderIfAbsent=true&apiKey=bb1781ab9b3c4273bd093adb858d64be"
-                    alt="Notifications"
-                    className="w-[52px] h-[52px]"
+                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/e7d3f2383d8db9611a9566be2d7b0c23590c4e3eace1c6eda5d60063255db3c5?placeholderIfAbsent=true&apiKey=bb1781ab9b3c4273bd093adb858d64be"
+                    alt="Previous"
+                    className="w-4 h-4"
                   />
                 </Button>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" className="w-8 h-8">
                   <img
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/ddf7b6d164df29bf99b18c4ee1d388bc6676278c4dec8d98a4062f2cb6c0d3ac?placeholderIfAbsent=true&apiKey=bb1781ab9b3c4273bd093adb858d64be"
-                    alt="Profile"
-                    className="w-[52px] h-[52px] rounded-full"
+                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/12c38de7cc915e855bcd2b9220fd6e066150c558613982457d974d8f56cc3bf3?placeholderIfAbsent=true&apiKey=bb1781ab9b3c4273bd093adb858d64be"
+                    alt="Next"
+                    className="w-4 h-4"
                   />
                 </Button>
               </div>
-            </header>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {mentors.map((mentor, index) => (
+                <MentorCard key={index} {...mentor} />
+              ))}
+            </div>
+          </section>
 
-            <div className="mt-11 flex gap-5 max-md:flex-col">
-              <div className="w-[30%] max-md:w-full">
-                <RunningTask currentTasks={65} totalTasks={100} />
-              </div>
-              <div className="w-[70%] max-md:w-full">
-                <Activity
-                  chartData={{
-                    labels: ["Mon", "Tue", "Wed", "Thu", "Fri"],
-                    values: [30, 40, 45, 50, 45]
-                  }}
-                />
+          {/* Upcoming Tasks */}
+          <section>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-lg font-semibold text-gray-900">Upcoming Task</h2>
+              <div className="flex gap-2">
+                <Button variant="ghost" size="icon" className="w-8 h-8">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/e7d3f2383d8db9611a9566be2d7b0c23590c4e3eace1c6eda5d60063255db3c5?placeholderIfAbsent=true&apiKey=bb1781ab9b3c4273bd093adb858d64be"
+                    alt="Previous"
+                    className="w-4 h-4"
+                  />
+                </Button>
+                <Button variant="ghost" size="icon" className="w-8 h-8">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/12c38de7cc915e855bcd2b9220fd6e066150c558613982457d974d8f56cc3bf3?placeholderIfAbsent=true&apiKey=bb1781ab9b3c4273bd093adb858d64be"
+                    alt="Next"
+                    className="w-4 h-4"
+                  />
+                </Button>
               </div>
             </div>
-
-            <section className="mt-8">
-              <div className="flex justify-between items-center mb-5">
-                <h2 className="text-2xl font-semibold text-gray-900">
-                  Monthly Mentors
-                </h2>
-                <div className="flex gap-2.5">
-                  <Button variant="ghost" size="icon">
-                    <img
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e7d3f2383d8db9611a9566be2d7b0c23590c4e3eace1c6eda5d60063255db3c5?placeholderIfAbsent=true&apiKey=bb1781ab9b3c4273bd093adb858d64be"
-                      alt="Previous"
-                      className="w-6 h-6"
-                    />
-                  </Button>
-                  <Button variant="ghost" size="icon">
-                    <img
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/12c38de7cc915e855bcd2b9220fd6e066150c558613982457d974d8f56cc3bf3?placeholderIfAbsent=true&apiKey=bb1781ab9b3c4273bd093adb858d64be"
-                      alt="Next"
-                      className="w-6 h-6"
-                    />
-                  </Button>
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-8">
-                {mentors.map((mentor, index) => (
-                  <MentorCard key={index} {...mentor} />
-                ))}
-              </div>
-            </section>
-
-            <section className="mt-8">
-              <div className="flex justify-between items-center mb-5">
-                <h2 className="text-2xl font-semibold text-gray-900">
-                  Upcoming Task
-                </h2>
-                <div className="flex gap-2.5">
-                  <Button variant="ghost" size="icon">
-                    <img
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e7d3f2383d8db9611a9566be2d7b0c23590c4e3eace1c6eda5d60063255db3c5?placeholderIfAbsent=true&apiKey=bb1781ab9b3c4273bd093adb858d64be"
-                      alt="Previous"
-                      className="w-6 h-6"
-                    />
-                  </Button>
-                  <Button variant="ghost" size="icon">
-                    <img
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/12c38de7cc915e855bcd2b9220fd6e066150c558613982457d974d8f56cc3bf3?placeholderIfAbsent=true&apiKey=bb1781ab9b3c4273bd093adb858d64be"
-                      alt="Next"
-                      className="w-6 h-6"
-                    />
-                  </Button>
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-8">
-                {upcomingTasks.map((task, index) => (
-                  <TaskCard key={index} {...task} />
-                ))}
-              </div>
-            </section>
-          </div>
-        </section>
-
-        <aside className="w-[32%] ml-5 max-md:w-full max-md:ml-0">
-          <div className="bg-neutral-100 p-8">
-            <Calendar
-              currentMonth="July"
-              currentYear={2022}
-              selectedDate={10}
-            />
-            <div className="mt-8">
-              <TaskToday {...taskToday} />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {upcomingTasks.map((task, index) => (
+                <TaskCard key={index} {...task} />
+              ))}
             </div>
+          </section>
+        </div>
+
+        {/* Right Sidebar */}
+        <aside className="bg-neutral-100 p-4 rounded-lg">
+          <Calendar
+            currentMonth="July"
+            currentYear={2022}
+            selectedDate={10}
+          />
+          <div className="mt-4">
+            <TaskToday {...taskToday} />
           </div>
         </aside>
       </div>

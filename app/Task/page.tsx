@@ -1,8 +1,11 @@
+import { TaskDashboard } from '@/components/Task/TaskDashboard'
 import React from 'react'
 
 function Task() {
   return (
-    <div>Task</div>
+    <div>
+      <TaskDashboard />
+    </div>
   )
 }
 

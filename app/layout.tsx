@@ -15,14 +15,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <div className="flex flex-row h-screen">
-          <div className="md:w-64 w-0">
+      <body className="overflow-hidden">
+        <div className="flex h-screen">
+          <div className="md:w-64 flex-shrink-0">
             <Sidebar />
           </div>
-          <div className="flex-1">
+          <main className="flex-1 bg-gray-50">
             <Providers>{children}</Providers>
-          </div>
+          </main>
         </div>
       </body>
     </html>

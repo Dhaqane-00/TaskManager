@@ -1,9 +1,9 @@
-import Image from "next/image";
+import DashboardPage from "@/components/Dashboard/DashboardPage";
 
 export default function Home() {
   return (
-    <div className="p-8">
-      <h1>Home</h1>
+    <div className="h-screen overflow-y-auto p-6">
+      <DashboardPage />
     </div>
   );
 }
