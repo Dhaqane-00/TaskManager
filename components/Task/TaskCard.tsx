@@ -2,17 +2,23 @@ import Image from "next/image"
 import { Clock } from 'lucide-react'
 import { Card, CardContent, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
+import { AnimatedTooltip } from "@/components/ui/animated-tooltip"
 
 interface TaskCardProps {
   title: string
   category: string
   progress: number
   timeLeft: string
-  teamSize: number
+  teamMembers: {
+    id: number
+    name: string
+    designation: string
+    image: string
+  }[]
   imageSrc: string
 }
 
-export function TaskCard({ title, category, progress, timeLeft, teamSize, imageSrc }: TaskCardProps) {
+export function TaskCard({ title, category, progress, timeLeft, teamMembers, imageSrc }: TaskCardProps) {
   return (
     <Card>
       <CardContent className="p-6">
@@ -41,17 +47,8 @@ export function TaskCard({ title, category, progress, timeLeft, teamSize, imageS
                 <Clock className="h-4 w-4" />
                 {timeLeft}
               </div>
-              <div className="flex -space-x-2">
-                {[...Array(teamSize)].map((_, i) => (
-                  <Image
-                    key={i}
-                    src="/placeholder.svg"
-                    alt={`Team member ${i + 1}`}
-                    width={32}
-                    height={32}
-                    className="rounded-full border-2 border-background"
-                  />
-                ))}
+              <div className="flex">
+                <AnimatedTooltip items={teamMembers} />
               </div>
             </div>
           </div>

@@ -12,6 +12,8 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { ChevronLeft, ChevronRight, Search } from 'lucide-react'
+import Image from "next/image"
+
 
 // Add this mock data at the top of the file, outside the component
 const timeLimitTasks = [
@@ -20,16 +22,48 @@ const timeLimitTasks = [
     category: "UI/UX Design", 
     progress: 90,
     timeLeft: "1 Hour",
-    teamSize: 5,
-    imageSrc: "/placeholder.svg"
+    teamMembers: [
+      {
+        id: 1,
+        name: "John Smith",
+        designation: "UI Designer",
+        image: "/icons/placeholder.svg"
+      },
+      {
+        id: 2,
+        name: "Sarah Johnson",
+        designation: "UX Designer",
+        image: "/icons/placeholder.svg"
+      },
+      {
+        id: 3,
+        name: "Michael Brown",
+        designation: "Product Designer",
+        image: "/icons/placeholder.svg"
+      }
+    ],
+    imageSrc: "/icons/TaskImg.svg"
   },
   {
     title: "Website Redesign Project",
     category: "Development",
     progress: 65,
     timeLeft: "2 Hours",
-    teamSize: 3,
-    imageSrc: "/placeholder.svg"
+    teamMembers: [
+      {
+        id: 4,
+        name: "Emily Davis",
+        designation: "Frontend Dev",
+        image: "/icons/placeholder.svg"
+      },
+      {
+        id: 5,
+        name: "Alex Wilson",
+        designation: "Backend Dev",
+        image: "/icons/placeholder.svg"
+      }
+    ],
+    imageSrc: "/icons/TaskImg.svg"
   }
 ]
 
@@ -39,16 +73,42 @@ const newTasks = [
     category: "UI/UX Design",
     progress: 75,
     timeLeft: "3 Days Left",
-    teamSize: 5,
-    imageSrc: "/placeholder.svg"
+    teamMembers: [
+      {
+        id: 6,
+        name: "Lisa Anderson",
+        designation: "UI Designer",
+        image: "/icons/placeholder.svg"
+      },
+      {
+        id: 7,
+        name: "David Lee",
+        designation: "UX Designer",
+        image: "/icons/placeholder.svg"
+      }
+    ],
+    imageSrc: "/icons/TaskImg.svg"
   },
   {
     title: "Backend API Development",
     category: "Development",
     progress: 30,
     timeLeft: "5 Days Left",
-    teamSize: 4,
-    imageSrc: "/placeholder.svg"
+    teamMembers: [
+      {
+        id: 8,
+        name: "James Wilson",
+        designation: "Backend Dev",
+        image: "/icons/placeholder.svg"
+      },
+      {
+        id: 9,
+        name: "Emma Taylor",
+        designation: "DevOps",
+        image: "/icons/placeholder.svg"
+      }
+    ],
+    imageSrc: "/icons/TaskImg.svg"
   }
 ]
 
