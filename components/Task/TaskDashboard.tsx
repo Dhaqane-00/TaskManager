@@ -13,6 +13,45 @@ import {
 } from "@/components/ui/select"
 import { ChevronLeft, ChevronRight, Search } from 'lucide-react'
 
+// Add this mock data at the top of the file, outside the component
+const timeLimitTasks = [
+  {
+    title: "Creating Awesome Mobile Apps",
+    category: "UI/UX Design", 
+    progress: 90,
+    timeLeft: "1 Hour",
+    teamSize: 5,
+    imageSrc: "/placeholder.svg"
+  },
+  {
+    title: "Website Redesign Project",
+    category: "Development",
+    progress: 65,
+    timeLeft: "2 Hours",
+    teamSize: 3,
+    imageSrc: "/placeholder.svg"
+  }
+]
+
+const newTasks = [
+  {
+    title: "Creating Mobile App Design",
+    category: "UI/UX Design",
+    progress: 75,
+    timeLeft: "3 Days Left",
+    teamSize: 5,
+    imageSrc: "/placeholder.svg"
+  },
+  {
+    title: "Backend API Development",
+    category: "Development",
+    progress: 30,
+    timeLeft: "5 Days Left",
+    teamSize: 4,
+    imageSrc: "/placeholder.svg"
+  }
+]
+
 export function TaskDashboard() {
   return (
     <div className="p-6 max-w-6xl mx-auto space-y-8">
@@ -59,14 +98,11 @@ export function TaskDashboard() {
             </Button>
           </div>
         </div>
-        <TaskCard
-          title="Creating Awesome Mobile Apps"
-          category="UI/UX Design"
-          progress={90}
-          timeLeft="1 Hour"
-          teamSize={5}
-          imageSrc="/placeholder.svg"
-        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {timeLimitTasks.map((task, index) => (
+            <TaskCard key={index} {...task} />
+          ))}
+        </div>
       </section>
 
       <section>
@@ -81,16 +117,12 @@ export function TaskDashboard() {
             </Button>
           </div>
         </div>
-        <TaskCard
-          title="Creating Mobile App Design"
-          category="UI/UX Design"
-          progress={75}
-          timeLeft="3 Days Left"
-          teamSize={5}
-          imageSrc="/placeholder.svg"
-        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {newTasks.map((task, index) => (
+            <TaskCard key={index} {...task} />
+          ))}
+        </div>
       </section>
     </div>
   )
 }
-
