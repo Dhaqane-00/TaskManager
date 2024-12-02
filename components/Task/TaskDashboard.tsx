@@ -98,10 +98,14 @@ export function TaskDashboard() {
             </Button>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {timeLimitTasks.map((task, index) => (
-            <TaskCard key={index} {...task} />
-          ))}
+        <div className="overflow-x-auto pb-4">
+          <div className="flex gap-4 min-w-full">
+            {timeLimitTasks.map((task, index) => (
+              <div key={index} className="w-[600px] flex-none">
+                <TaskCard {...task} />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -117,10 +121,14 @@ export function TaskDashboard() {
             </Button>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {newTasks.map((task, index) => (
-            <TaskCard key={index} {...task} />
-          ))}
+        <div className="overflow-x-auto pb-4">
+          <div className="flex gap-4 min-w-full">
+            {newTasks.map((task, index) => (
+              <div key={index} className="w-[600px] flex-none">
+                <TaskCard {...task} />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </div>
