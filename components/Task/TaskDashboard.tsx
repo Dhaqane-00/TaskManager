@@ -42,7 +42,7 @@ const timeLimitTasks = [
         image: "/icons/placeholder.svg"
       }
     ],
-    imageSrc: "/icons/TaskImg.svg"
+    imageSrc: "/icons/TaskImg.png"
   },
   {
     title: "Website Redesign Project",
@@ -63,7 +63,7 @@ const timeLimitTasks = [
         image: "/icons/placeholder.svg"
       }
     ],
-    imageSrc: "/icons/TaskImg.svg"
+    imageSrc: "/icons/TaskImg.png"
   }
 ]
 
@@ -87,7 +87,7 @@ const newTasks = [
         image: "/icons/placeholder.svg"
       }
     ],
-    imageSrc: "/icons/TaskImg.svg"
+    imageSrc: "/icons/TaskImg.png"
   },
   {
     title: "Backend API Development",
@@ -108,7 +108,7 @@ const newTasks = [
         image: "/icons/placeholder.svg"
       }
     ],
-    imageSrc: "/icons/TaskImg.svg"
+    imageSrc: "/icons/TaskImg.png"
   }
 ]
 
